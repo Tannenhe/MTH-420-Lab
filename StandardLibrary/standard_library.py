@@ -51,7 +51,12 @@ set_2 == set_1
 #set is mutable
 
 # Problem 3
-def hypot(a, b):
+
+import calc
+
+def hyp(a,b):
+    return mth.sqrt(calc.add(calc.pro(a,a),calc.pro(b,b)))
+
     """Calculate and return the length of the hypotenuse of a right triangle.
     Do not use any functions other than sum(), product() and sqrt that are 
     imported from your 'calculator' module.
@@ -62,7 +67,7 @@ def hypot(a, b):
     Returns:
         The length of the triangle's hypotenuse.
     """
-    raise NotImplementedError("Problem 3 Incomplete")
+    print(hyp(3,4))
 
 
 # Problem 4
