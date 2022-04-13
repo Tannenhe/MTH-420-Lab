@@ -80,9 +80,11 @@ def power_set(A):
     Returns:
         (list(sets)): The power set of A as a list of sets.
     """
-    raise NotImplementedError("Problem 4 Incomplete")
+    s = list(A)
+    return chain.from_iterable(it.combinations(s, r) for r in range(len(s)+1))
 
 
 # Problem 5: Implement shut the box.
 def shut_the_box(player, timelimit):
     """Play a single game of shut the box."""
+    
