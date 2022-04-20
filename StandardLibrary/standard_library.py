@@ -11,7 +11,7 @@ def prob1(L):
     """Return the minimum, maximum, and average of the entries of L
     (in that order).
     """
-    return print(min(L), max(L), st.mean(L), sep=", ")
+    return print(min(L), max(L), sum(L)/len(L), sep=", ")
 
 
 # Problem 2
@@ -67,7 +67,8 @@ def hyp(a,b):
         The length of the triangle's hypotenuse.
     """
     import calc
-    return mth.sqrt(calc.add(calc.pro(a,a),calc.pro(b,b)))
+    import math
+    return math.sqrt(calc.add(calc.pro(a,a),calc.pro(b,b)))
 
 
 # Problem 4
@@ -80,5 +81,13 @@ def power_set(A):
     Returns:
         (list(sets)): The power set of A as a list of sets.
     """
+    import itertools
     s = list(A)
-    return chain.from_iterable(it.combinations(s, r) for r in range(len(s)+1))
+    r = len(list(range(len(s))))
+    powers=[]
+    i = 0
+    while i <= r:
+        combo = itertools.combinations(s, i)
+        powers.append(list(itertools.chain(combo)))
+        i = i + 1
+    return print(powers)
