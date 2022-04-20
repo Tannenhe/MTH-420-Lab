@@ -20,42 +20,41 @@ def prob2():
     Test numbers, strings, lists, tuples, and sets. Print your results.
     """
     
-int_1 = 1
-int_2 = int_1
-int_2 = 2
-int_2 == int_1
-#int is immutable
+    int_1 = 1
+    int_2 = int_1
+    int_2 = 2
+    int_2 == int_1
+    #int is immutable
 
-str_1 = 'apples'
-str_2 = str_1
-str_2 = 'bananas'
-str_2 == str_1
-#str is immutable
+    str_1 = 'apples'
+    str_2 = str_1
+    str_2 = 'bananas'
+    str_2 == str_1
+    #str is immutable
 
-list_1 = [1,2,3]
-list_2 = list_1
-list_2[1] = 4
-list_2 == list_1
-#list is mutable
+    list_1 = [1,2,3]
+    list_2 = list_1
+    list_2[1] = 4
+    list_2 == list_1
+    #list is mutable
 
-tuple_1 = (1,2,3)
-tuple_2 = tuple_1
-tuple_2 += (1,)
-tuple_2 == tuple_1
-#tuple is immutable
+    tuple_1 = (1,2,3)
+    tuple_2 = tuple_1
+    tuple_2 += (1,)
+    tuple_2 == tuple_1
+    #tuple is immutable
 
-set_1 = {1,2,3}
-set_2 = set_1
-set_2.remove(1)
-set_2 == set_1
-#set is mutable
+    set_1 = {1,2,3}
+    set_2 = set_1
+    set_2.remove(1)
+    set_2 == set_1
+    #set is mutable
 
+    return print("int, string, and tuple are immutable"), print("list and set are mutable")
+    
 # Problem 3
 
-import calc
-
 def hyp(a,b):
-    return mth.sqrt(calc.add(calc.pro(a,a),calc.pro(b,b)))
 
     """Calculate and return the length of the hypotenuse of a right triangle.
     Do not use any functions other than sum(), product() and sqrt that are 
@@ -67,7 +66,8 @@ def hyp(a,b):
     Returns:
         The length of the triangle's hypotenuse.
     """
-    print(hyp(3,4))
+    import calc
+    return mth.sqrt(calc.add(calc.pro(a,a),calc.pro(b,b)))
 
 
 # Problem 4
@@ -82,9 +82,3 @@ def power_set(A):
     """
     s = list(A)
     return chain.from_iterable(it.combinations(s, r) for r in range(len(s)+1))
-
-
-# Problem 5: Implement shut the box.
-def shut_the_box(player, timelimit):
-    """Play a single game of shut the box."""
-    
