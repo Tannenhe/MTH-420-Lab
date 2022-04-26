@@ -50,7 +50,7 @@ def prob2():
     set_2 == set_1
     #set is mutable
 
-    return print("int, string, and tuple are immutable"), print("list and set are mutable")
+    return print("int, string, and tuple are immutable.","list and set are mutable")
     
 # Problem 3
 
