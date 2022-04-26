@@ -5,22 +5,6 @@ Ehman Tannenholz
 MTH 420
 4-1-22
 """
-print("Hello, world!")
-
-
-
-#Problem 1
-
-pi = 3.14159
-frac = 4/3
-r=10
-print(pi*frac*r**3)
-
-
-
-#Problem 2
-
-print("Hello, World!")
 
 
 
@@ -39,7 +23,8 @@ def prob4():
     import numpy as np
     A = np.array( [[3, -1, 4],[1, 5, -9]] )
     B = np.array( [[2, 6, -5, 3],[5, -8, 9, 7],[9, -3, -2, -3]] )
-    return print(A@B)
+    array = A@B
+    return print(array)
 
 
 
@@ -78,4 +63,10 @@ def prob6a():
     for num in A:
         A5.append(num*5)
 
-    return print(A5), print(AplusB), print (AB)
+    return A5, AplusB, AB
+
+def prob6b():
+    import numpy as np
+    A = np.array([1, 2, 3, 4, 5, 6, 7])
+    B = np.array([5, 5, 5, 5, 5, 5, 5])
+    return print(A*B,A+B,A*5,sep=', ')
