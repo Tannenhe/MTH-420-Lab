@@ -1,0 +1,25 @@
+04/26/22 22:51
+
+Problem 1 (10 points):
+TypeError: prob1() failed to return anything
+
+Problem 2 (10 points):
+Score += 10
+
+Problem 3 (10 points):
+AttributeError: module 'TannenholzEhman.StandardLibrary.standard_library' has no attribute 'hypot'
+
+Problem 4 (10 points):
+TypeError: 'NoneType' object is not iterable
+
+Code Quality (10 points):
+Score += 10
+
+Total score: 20/50 = 40.0%
+
+
+Comments:
+	resubmit
+
+-------------------------------------------------------------------------------
+
