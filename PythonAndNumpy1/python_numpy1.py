@@ -33,11 +33,11 @@ def prob4():
 def tax_liability(income):
     """Returns tax bracket from income"""
     if income < 9875:
-        return print("10%")
+        return income*0.1
     elif income >= 9875.01 and income < 40125:
-        return print("12%")
+        return income*0.12
     elif income >= 40125.01:
-        return print("22%")
+        return income*0.22
 
 
 
