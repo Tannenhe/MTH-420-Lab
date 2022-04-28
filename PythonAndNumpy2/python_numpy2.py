@@ -115,5 +115,5 @@ def prob8():
     adjacent numbers in the same direction (up, down, left, right, or
     diagonally) in the grid.
     """
-    raise NotImplementedError("Problem 8 Incomplete")
+    
 
