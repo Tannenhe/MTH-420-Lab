@@ -8,7 +8,8 @@
 #Problem 1
 def isolate(a, b, c, d, e):
     
-    return print(a,b,c,sep='     ',end=' '), print(d,e,sep=' ')
+    A = print(a,b,c,sep='     ',end=' ')
+    B = print(d,e,sep=' ')
 
 
 
@@ -115,5 +116,36 @@ def prob8():
     adjacent numbers in the same direction (up, down, left, right, or
     diagonally) in the grid.
     """
+    import numpy as np
     
+    grid = np.load('grid.npy')
+    
+    col = np.max(grid[:,:-3] * grid[:,1:-2] * grid[:,2:-1] * grid[:,3:])
+    
+    row = np.max(grid[:-3,:] * grid[1:-2,:] * grid[2:-1,:] * grid[3:,:])
+    
+    ldiag = []
+    
+    for i in range(-19,20):
+        if len(np.diagonal(grid,i)) >= 4:
+            for n in range(len(np.diagonal(grid,i)-4)):
+                ldiag.append(np.product(np.diagonal(grid,i)[n:(n+4)]))
+                
+    rdiag = []
+    
+    flip = np.fliplr(grid)
+    
+    for i in range(-19,20):
+        if len(np.diagonal(flip,i)) >= 4:
+            
+            for n in range(len(np.diagonal(flip,i)-4)):
+                rdiag.append(np.product(np.diagonal(flip,i)[n:(n+4)]))
+                
+        elif len(np.diagonal(flip,i)) == 4:
+            rdiag.append(np.product(np.diagonal(flip,i)))
+            
+                
+    return np.max([np.max(ldiag),np.max(rdiag),col,row])
 
+                    
+            
