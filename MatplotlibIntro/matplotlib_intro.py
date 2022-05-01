@@ -1,8 +1,8 @@
 # matplotlib_intro.py
 """Python Essentials: Intro to Matplotlib.
-<Name>
-<Class>
-<Date>
+<Ehman Tannenholz>
+<MTH 420>
+<4/29/22>
 """
 
 
@@ -18,23 +18,56 @@ def var_of_means(n):
     Returns:
         (float) The variance of the means of each row.
     """
-    raise NotImplementedError("Problem 1 Incomplete")
+    import numpy as np
+    
+    matrix = np.random.normal(size=(n,n))
+    means = matrix.mean(axis=1)
+    variance = matrix.var(axis=1)
+    return print("Means:", means, "Variances:", variance)
+    
+
+def var_of_means2(n):
+    """no printed output
+    """
+    import numpy as np
+    
+    matrix = np.random.normal(size=(n,n))
+    means = matrix.mean(axis=1)
+    variance = matrix.var(axis=1)
+    return variance
 
 def prob1():
     """Create an array of the results of var_of_means() with inputs
     n = 100, 200, ..., 1000. Plot and show the resulting array.
     """
-    raise NotImplementedError("Problem 1 Incomplete")
+    from matplotlib import pyplot as plt
+    
+    for i in [100,200,300,400,500,600,700,800,900,1000]:
+        temp = plt.plot(var_of_means2(i))
+        plt.show(temp)
+        
 
 
 # Problem 2
+
 def prob2():
     """Plot the functions sin(x), cos(x), and arctan(x) on the domain
     [-2pi, 2pi]. Make sure the domain is refined enough to produce a figure
     with good resolution.
     """
-    raise NotImplementedError("Problem 2 Incomplete")
-
+    from matplotlib import pyplot as plt
+    import numpy as np
+    
+    x = np.linspace(-np.pi,np.pi,50)
+    y1 = np.sin(x)
+    y2 = np.cos(x)
+    y3 = np.arctan(x)
+    plt.plot(x,y1)
+    plt.show()
+    plt.plot(x,y2)
+    plt.show()
+    plt.plot(x,y3)
+    plt.show()
 
 # Problem 3
 def prob3():
@@ -44,7 +77,20 @@ def prob3():
         3. Set the range of the x-axis to [-2,6] and the range of the
            y-axis to [-6,6].
     """
-    raise NotImplementedError("Problem 3 Incomplete")
+    from matplotlib import pyplot as plt
+    import numpy as np
+    
+    x1 = np.linspace(-2,0.99,50)
+    x2 = np.linspace(1.01,6,50)
+    y1 = 1/(x1-1)
+    y2 = 1/(x2-1)
+    A = plt.plot(x1,y1,'m--',linewidth = 4)
+    B = plt.plot(x2,y2,'m--',linewidth = 4)
+    plt.xlim(-2,6)
+    plt.ylim(-6,6)
+    plt.show(A,B)
+    
+    
 
 
 # Problem 4
@@ -61,7 +107,28 @@ def prob4():
              2sin(x): blue dashed line.
             2sin(2x): magenta dotted line.
     """
-    raise NotImplementedError("Problem 4 Incomplete")
+    from matplotlib import pyplot as plt
+    import numpy as np
+    
+    x = np.linspace(0,2*np.pi,50)
+    
+    plt.subplot(221)
+    plt.plot(x, np.sin(x),'g-')
+    plt.title('Sin(x)')
+    plt.subplot(222)
+    plt.plot(x, np.sin(2*x),'r--')
+    plt.title('Sin(2x)')
+    plt.subplot(223)
+    plt.plot(x,2*np.sin(x),'b--')
+    plt.title('2Sin(x)')
+    plt.subplot(224)
+    plt.plot(x,2*np.sin(2*x),'m:')
+    plt.title('2Sin(2x)')
+    plt.axis([0, 2*np.pi, -2, 2])
+    plt.suptitle('Sin functions with constants')
+    plt.show()
+    
+    
 
 
 # Problem 5
@@ -74,7 +141,22 @@ def prob5():
         2. A histogram of the hours of the day, with one bin per hour.
             Label and set the limits of the x-axis.
     """
-    raise NotImplementedError("Problem 5 Incomplete")
+    import numpy as np
+    from matplotlib import pyplot as plt
+    fars = np.load('FARS.npy')
+    
+    plt.subplot(121)
+    plt.plot(fars[:,1],fars[:,2],'k,')
+    plt.axis('equal')
+    plt.xlabel('Longitude')
+    plt.ylabel('Lattitude')
+    plt.show
+    plt.subplot(122)
+    plt.hist(fars[:,0],bins = 24)
+    plt.xlabel('24h Time')
+    plt.xlim(0,24)
+    plt.show
+    
 
 
 # Problem 6
@@ -88,4 +170,22 @@ def prob6():
         3. Choose a non-default color scheme.
         4. Add a colorbar to each subplot.
     """
-    raise NotImplementedError("Problem 6 Incomplete")
+    import numpy as np
+    from matplotlib import pyplot as plt
+    
+    x = np.linspace(-2*np.pi, 2*np.pi, 100)
+    y = x.copy()
+    X, Y = np.meshgrid(x, y)
+    Z = (np.sin(X) * np.sin(Y))/(X*Y)
+    
+    plt.subplot(121)
+    plt.pcolormesh(X, Y, Z, cmap="viridis")
+    plt.colorbar()
+    plt.xlim(-2*np.pi, 2*np.pi)
+    plt.ylim(-2*np.pi, 2*np.pi)
+    
+    plt.subplot(122)
+    plt.contour(X, Y, Z, 10, cmap="coolwarm")
+    plt.colorbar()
+    
+    plt.show
