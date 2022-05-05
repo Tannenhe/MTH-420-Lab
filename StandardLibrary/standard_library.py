@@ -11,7 +11,7 @@ def prob1(L):
     """Return the minimum, maximum, and average of the entries of L
     (in that order).
     """
-    return print(min(L), max(L), sum(L)/len(L), sep=", ")
+    return min(L), max(L), sum(L)/len(L), sep=", "
 
 
 # Problem 2
@@ -54,7 +54,7 @@ def prob2():
     
 # Problem 3
 
-def hypot(a,b):
+def hyp(a,b):
 
     """Calculate and return the length of the hypotenuse of a right triangle.
     Do not use any functions other than sum(), product() and sqrt that are 
@@ -90,4 +90,4 @@ def power_set(A):
         combo = itertools.combinations(s, i)
         powers.append(list(itertools.chain(combo)))
         i = i + 1
-    return print(powers)
+    return powers
