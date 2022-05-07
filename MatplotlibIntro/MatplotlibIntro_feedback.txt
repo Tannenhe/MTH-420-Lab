@@ -1,0 +1,60 @@
+05/06/22 20:12
+
+Problem 1 (10 points):
+prob1() plot does not match specifications
+Score += 0
+
+Problem 2 (10 points):
+prob2() plot does not match specifications
+Score += 1
+
+Problem 3 (10 points):
+Incorrect x limits
+	Correct response: (-2, 6)
+	Student response: (0.0, 1.0)
+Incorrect y limits
+	Correct response: (-6, 6)
+	Student response: (0.0, 1.0)
+Score += 6
+
+Problem 4 (5 points):
+NotImplementedError: 4 subplots required (not 0)
+
+Problem 6 (10 points):
+prob6() plot does not match specifications
+Score += 5
+
+Code Quality (5 points):
+Score += 5
+
+Total score: 17/50 = 34.0%
+
+-------------------------------------------------------------------------------
+
+05/07/22 06:48
+
+Problem 1 (10 points):
+prob1() plot does not match specifications
+Score += 0
+
+Problem 2 (10 points):
+prob2() plot does not match specifications
+Score += 4
+
+Problem 3 (10 points):
+Score += 10
+
+Problem 4 (5 points):
+Score += 5
+
+Problem 6 (10 points):
+prob6() plot does not match specifications
+Score += 0
+
+Code Quality (5 points):
+Score += 5
+
+Total score: 24/50 = 48.0%
+
+-------------------------------------------------------------------------------
+
