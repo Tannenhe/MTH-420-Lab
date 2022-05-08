@@ -54,7 +54,7 @@ def prob2():
     
 # Problem 3
 
-def hyp(a,b):
+def hypot(a,b):
 
     """Calculate and return the length of the hypotenuse of a right triangle.
     Do not use any functions other than sum(), product() and sqrt that are 
