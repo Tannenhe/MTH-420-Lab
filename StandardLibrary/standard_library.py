@@ -11,7 +11,7 @@ def prob1(L):
     """Return the minimum, maximum, and average of the entries of L
     (in that order).
     """
-    return min(L), max(L), sum(L)/len(L), sep=", "
+    return min(L), max(L), sum(L)/len(L)
 
 
 # Problem 2
@@ -50,7 +50,7 @@ def prob2():
     set_2 == set_1
     #set is mutable
 
-    return print("int, string, and tuple are immutable.","list and set are mutable")
+    print("int, string, and tuple are immutable.","list and set are mutable")
     
 # Problem 3
 
@@ -82,12 +82,12 @@ def power_set(A):
         (list(sets)): The power set of A as a list of sets.
     """
     import itertools
-    s = list(A)
-    r = len(list(range(len(s))))
+    
+    r = len(list(range(len(A))))
     powers=[]
     i = 0
     while i <= r:
-        combo = itertools.combinations(s, i)
-        powers.append(list(itertools.chain(combo)))
+        combo = itertools.combinations(A, i)
+        powers.append(set(itertools.chain(combo)))
         i = i + 1
     return powers
