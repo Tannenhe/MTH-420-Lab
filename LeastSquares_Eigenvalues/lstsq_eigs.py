@@ -12,10 +12,11 @@
 
 import numpy as np
 from matplotlib import pyplot as plt
-
+import scipy
+import scipy.linalg 
 
 # Problem 1
-def least_squares(A, b):
+def least_squares(a, B):
     """Calculate the least squares solutions to Ax = b by using the QR
     decomposition.
 
@@ -26,7 +27,14 @@ def least_squares(A, b):
     Returns:
         x ((n, ) ndarray): The solution to the normal equations.
     """
-    raise NotImplementedError("Problem 1 Incomplete")
+    
+    A = scipy.array(a)
+    b = scipy.array(B)
+    QR = np.linalg.qr(A,mode='reduced')
+    QTb = np.matmul(QR[0].T,b)
+    return scipy.linalg.solve_triangular(QR[1],QTb)
+
+'''scipy.linalg.solve(QR[1],QR[0].T*b)'''
 
 # Problem 2
 def line_fit():
@@ -34,8 +42,16 @@ def line_fit():
     index for the data in housing.npy. Plot both the data points and the least
     squares line.
     """
-    raise NotImplementedError("Problem 2 Incomplete")
-
+    housing = np.load("housing.npy")
+    x = housing[:,0]
+    y = housing[:,1]
+    ones = np.ones((len(x),1))
+    A = np.column_stack((x,ones))
+    b = y
+    lsq = least_squares(A, b)
+    plt.scatter(x,y)
+    plt.plot(x,lsq[0]*x+lsq[1])
+    return(lsq)
 
 # Problem 3
 def polynomial_fit():
@@ -43,7 +59,41 @@ def polynomial_fit():
     the year to the housing price index for the data in housing.npy. Plot both
     the data points and the least squares polynomials in individual subplots.
     """
-    raise NotImplementedError("Problem 3 Incomplete")
+    housing = np.load("housing.npy")
+    x = housing[:,0]
+    y = housing[:,1]
+    xpoly = np.linspace(0,16,50)
+    
+    plt.subplot(221)
+    plt.title('3rd order')
+    three = np.vander(x,3)
+    threeC = scipy.linalg.lstsq(three, y)[0]
+    plt.plot(x,np.matmul(three,threeC))
+    plt.scatter(x,y)
+    
+    plt.subplot(222)
+    plt.title('6th order')
+    six = np.vander(x,6)
+    sixC = scipy.linalg.lstsq(six, y)[0]
+    plt.plot(x,np.matmul(six,sixC))
+    plt.scatter(x,y)
+    
+    plt.subplot(223)
+    plt.title('9th order')
+    nine = np.vander(x,9)
+    nineC = scipy.linalg.lstsq(nine, y)[0]
+    plt.plot(x,np.matmul(nine,nineC))
+    plt.scatter(x,y)
+    
+    plt.subplot(224)
+    plt.title('12th order')
+    twelve = np.vander(x,12)
+    twelveC = scipy.linalg.lstsq(twelve, y)[0]
+    plt.plot(x,np.matmul(twelve,twelveC))
+    plt.scatter(x,y)
+    
+    plt.show()
+    
 
 
 def plot_ellipse(a, b, c, d, e):
