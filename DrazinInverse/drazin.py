@@ -1,8 +1,8 @@
 # drazin.py
 """Volume 1: The Drazin Inverse.
-<Name>
-<Class>
-<Date>
+<Ehman Tannenholz>
+<MTH 420>
+<5-13-22>
 """
 
 import numpy as np
@@ -50,7 +50,23 @@ def is_drazin(A, Ad, k):
     Returns:
         (bool) True of Ad is the Drazin inverse of A, False otherwise.
     """
-    raise NotImplementedError("Problem 1 Incomplete")
+    
+    if np.allclose(np.matmul(A,Ad), np.matmul(Ad,A)):
+        pass
+    else:
+        return False
+    
+    if np.allclose(np.matmul(np.linalg.matrix_power(A,k+1),Ad), np.linalg.matrix_power(A,k)):
+        pass
+    else:
+        return False
+    
+    if np.allclose(np.matmul(Ad,np.matmul(A,Ad)), Ad):
+        pass
+    else:
+        return False
+    
+    return True
 
 
 # Problem 2
@@ -63,7 +79,34 @@ def drazin_inverse(A, tol=1e-4):
     Returns:
        ((n,n) ndarray) The Drazin inverse of A.
     """
-    raise NotImplementedError("Problem 2 Incomplete")
+    T,Q = la.schur(A)
+    f = lambda x: abs(x) > 0
+    T1,Q1,k = la.schur(A, sort=f)
+    g = lambda x: abs(x) <= 0
+    T2,Q2,k2 = la.schur(A, sort=g)
+    S = Q1[:,0:k]
+    S = np.hstack((S,Q2[:,0:-k]))
+    Sinv = np.linalg.inv(S)
+    V = np.matmul(Sinv,np.matmul(A,S))
+    Z = np.zeros(A.shape)
+    Minv = np.linalg.inv(V[0:k,0:k])
+    Z[:k,:k] = Minv
+    
+    return np.matmul(S,np.matmul(Z,Sinv))
+    
+    
+def laplacian(A):
+    """Compute the Laplacian matrix of the adjacency matrix A,
+    as well as the second smallest eigenvalue.
+
+    Parameters:
+        A ((n,n) ndarray) adjacency matrix for an undirected weighted graph.
+
+    Returns:
+        L ((n,n) ndarray): the Laplacian matrix of A
+    """
+    D = A.sum(axis=1)    # The degree of each vertex (either axis).
+    return np.diag(D) - A
 
 
 # Problem 3
@@ -77,10 +120,26 @@ def effective_resistance(A):
         ((n,n) ndarray) The matrix where the ijth entry is the effective
         resistance from node i to node j.
     """
-    raise NotImplementedError("Problem 3 Incomplete")
+    
+    n = len(A)
+    
+    for i in range(n):
+        for j in range(n):
+            if i == j:
+                A[i,j] = 0
+            else:
+                Lj = laplacian(A)
+                Lj[j,:] = np.identity(n)[j,:]
+                Ljd = drazin_inverse(Lj)
+                A[i,j] = Ljd[i,i]
+    return A
+            
+    
+    
+    
 
 
-# Problems 4 and 5
+'''# Problems 4 and 5
 class LinkPredictor:
     """Predict links between nodes of a network."""
 
@@ -124,4 +183,4 @@ class LinkPredictor:
         Raises:
             ValueError: If either node1 or node2 is not in the graph.
         """
-        raise NotImplementedError("Problem 5 Incomplete")
+        raise NotImplementedError("Problem 5 Incomplete")'''
